@@ -1,6 +1,6 @@
 var repoNameEl = document.querySelector("#repo-name");
 var issueContainerEl = document.querySelector("#issues-container");
-
+var limitWarningEl = document.querySelector("#limit-warning");
 
 var getRepoName = function() {
   // grab repo name from url query string
@@ -80,7 +80,21 @@ var displayIssues = function(issues) {
   }
 };
 
+var displayWarning = function(repo) {
+  // add text to warning container
+  limitWarningEl.textContent = "To see more than 30 issues, visit ";
 
+  // create link element
+  var linkEl = document.createElement("a");
+  linkEl.textContent = "GitHub.com";
+  linkEl.setAttribute("href", "https://github.com/" + repo + "/issues");
+  linkEl.setAttribute("target", "_blank");
+
+  // append to warning container
+  limitWarningEl.appendChild(linkEl);
+};
+
+getRepoName();
 
 
 
